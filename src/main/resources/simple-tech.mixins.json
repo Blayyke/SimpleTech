@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "me.xa5.simpletech.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinTest"
+  ],
+  "client": [
+    "MixinTestClient"
+  ],
+  "minVersion": "0.1.0",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

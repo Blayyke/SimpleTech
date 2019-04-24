@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "SBS",
+    "OOO"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:iron_ingot"
+    },
+    "O": {
+      "tag": "c:steel_ingot"
+    },
+    "B": {
+      "item": "simple-tech:machine_base"
+    }
+  },
+  "result": {
+    "item": "simple-tech:electric_furnace"
+  }
+}

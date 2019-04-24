@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "simple-tech",
+  "version": "$version",
+
+  "name": "Simple Tech",
+  "icon": "assets/simple-tech/icon.png",
+  "description": "Mod thats adds basic technology to fabric.",
+  "licence": "GNU GPLv3",
+  "contact": {
+    "sources": "https://github.com/Blayyke/Simple-Tech"
+  },
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.xa5.simpletech.SimpleTech"
+    ],
+    "client": [
+      "me.xa5.simpletech.SimpleTechClient"
+    ]
+  },
+  "mixins": [
+    "simple-tech.mixins.json"
+  ],
+  "requires": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*",
+    "cotton-energy": "*",
+    "libblockattributes": "*",
+    "silk": "*"
+  },
+  "custom": {
+    "modmenu:clientsideOnly": true,
+    "roughlyenoughitems:plugins": [
+      {
+        "id": "simple-tech_plugin",
+        "class": "me.xa5.recipes.rei.SimpleTechREIPlugin"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "itemGroup.simple-tech.machines": "SimpleTech Machines",
+  "itemGroup.simple-tech.blocks": "SimpleTech Blocks",
+  "itemGroup.simple-tech.items": "SimpleTech Items",
+
+  "ui.simple-tech.battery.depleted": "Depleted",
+
+  "item.simple-tech.steel_ingot": "Steel Ingot",
+  "item.simple-tech.copper_ingot": "Copper Ingot",
+  "item.simple-tech.tin_ingot": "Tin Ingot",
+  "item.simple-tech.aluminum_ingot": "Aluminum Ingot",
+
+  "item.simple-tech.steel_nugget": "Steel Nugget",
+
+  "item.simple-tech.battery": "Battery",
+
+  "block.simple-tech.electric_furnace": "Electric Furnace",
+  "block.simple-tech.machine_base": "Machine Base"
+}
