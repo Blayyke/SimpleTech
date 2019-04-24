@@ -1,16 +1,13 @@
 package me.xa5.simpletech.blocks.machines.electricfurnace;
 
-import net.minecraft.client.gui.ContainerScreen;
+import me.xa5.simpletech.Constants;
+import me.xa5.simpletech.container.screen.GenericContainerScreen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.TranslatableTextComponent;
 import net.minecraft.util.math.BlockPos;
 
-public class ElectricFurnaceScreen extends ContainerScreen {
+public class ElectricFurnaceScreen extends GenericContainerScreen {
     public ElectricFurnaceScreen(int syncId, BlockPos pos, PlayerEntity player) {
-        super(new ElectricFurnaceContainer(syncId, pos,player), player.inventory, new TranslatableTextComponent(""));
-    }
-
-    @Override
-    protected void drawBackground(float var1, int var2, int var3) {
+        super(new ElectricFurnaceContainer(syncId, pos, player), player.inventory, new TranslatableTextComponent(""), Constants.Blocks.ELECTRIC_FURNACE);
     }
 }
