@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "simple-tech:block/bronze_block"
+    }
+  }
+}

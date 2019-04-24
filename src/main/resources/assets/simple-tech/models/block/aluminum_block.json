@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "simple-tech:block/aluminum_block"
+  }
+}

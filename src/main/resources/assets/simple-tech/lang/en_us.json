@@ -5,14 +5,25 @@
 
   "ui.simple-tech.battery.depleted": "Depleted",
 
+  "item.simple-tech.battery": "Battery",
+
   "item.simple-tech.steel_ingot": "Steel Ingot",
+  "item.simple-tech.bronze_ingot": "Bronze Ingot",
   "item.simple-tech.copper_ingot": "Copper Ingot",
   "item.simple-tech.tin_ingot": "Tin Ingot",
   "item.simple-tech.aluminum_ingot": "Aluminum Ingot",
 
   "item.simple-tech.steel_nugget": "Steel Nugget",
+  "item.simple-tech.bronze_nugget": "Bronze Nugget",
+  "item.simple-tech.copper_nugget": "Copper Nugget",
+  "item.simple-tech.tin_nugget": "Tin Nugget",
+  "item.simple-tech.aluminum_nugget": "Aluminum Nugget",
 
-  "item.simple-tech.battery": "Battery",
+  "block.simple-tech.steel_block": "Steel Block",
+  "block.simple-tech.bronze_block": "Bronze Block",
+  "block.simple-tech.copper_block": "Copper Block",
+  "block.simple-tech.tin_block": "Tin Block",
+  "block.simple-tech.aluminum_block": "Aluminum Block",
 
   "block.simple-tech.electric_furnace": "Electric Furnace",
   "block.simple-tech.machine_base": "Machine Base"

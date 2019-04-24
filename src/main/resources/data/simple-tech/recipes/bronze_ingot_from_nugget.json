@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "simple-tech:bronze_nugget"
+    }
+  },
+  "result": {
+    "item": "simple-tech:bronze_ingot"
+  }
+}
