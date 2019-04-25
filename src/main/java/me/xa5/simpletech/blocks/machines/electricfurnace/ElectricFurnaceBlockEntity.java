@@ -10,7 +10,7 @@ public class ElectricFurnaceBlockEntity extends MachineWithEnergy {
 
     @Override
     protected int getInventorySize() {
-        return 2;
+        return 3;
     }
 
     @Override
