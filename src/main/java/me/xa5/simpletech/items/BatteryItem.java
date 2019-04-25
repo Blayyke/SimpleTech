@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class BatteryItem extends Item implements EnergyHolderItem {
-    private static final int MAX_CHARGE = 2000;
+    public static final int MAX_CHARGE = 2000;
 
     public BatteryItem(Settings settings) {
         super(settings);
