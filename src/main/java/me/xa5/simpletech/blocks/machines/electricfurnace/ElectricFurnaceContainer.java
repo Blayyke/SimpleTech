@@ -15,13 +15,15 @@ public class ElectricFurnaceContainer extends GenericContainer<ElectricFurnaceBl
         super(syncId, blockPos, player, STBlocks.ELECTRIC_FURNACE, BlockContext.create(player.world, blockPos));
 
         this.inventory = new BasicInventoryFixedWrapper(blockEntity, this);
-        addSlot(new Slot(this.inventory, 0, 56, 17));
-        addSlot(new BatterySlot(this.inventory, 1, 56, 53));
-        addSlot(new OutputSlot(player, this.inventory, 2, 116, 35));
+        int slotX = 26;
+
+        addSlot(new Slot(this.inventory, 0, slotX+(18*2), 26));
+        addSlot(new OutputSlot(player, this.inventory, ElectricFurnaceBlockEntity.OUTPUT_SLOT, slotX + (18 * 6), 26));
+        addSlot(new BatterySlot(this.inventory, ElectricFurnaceBlockEntity.CHARGE_SLOT, slotX +(18*0), 26));
     }
 
     @Override
     protected int getPlayerInvYOffset() {
-        return 84;
+        return 59;
     }
 }

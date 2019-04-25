@@ -10,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
 public abstract class GenericContainer<BE extends BlockEntity> extends Container {
-    protected final BE blockEntity;
+    public final BE blockEntity;
     protected PartialInventoryFixedWrapper inventory;
     private BlockContext context;
     private final BlockPos blockPos;

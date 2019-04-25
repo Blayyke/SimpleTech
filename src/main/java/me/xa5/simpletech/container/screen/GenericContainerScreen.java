@@ -6,8 +6,6 @@ import net.minecraft.client.gui.ContainerScreen;
 import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.TextComponent;
-import net.minecraft.text.TextFormat;
-import net.minecraft.text.TranslatableTextComponent;
 import net.minecraft.util.Identifier;
 
 public class GenericContainerScreen<T extends Container> extends ContainerScreen<T> {
@@ -40,5 +38,15 @@ public class GenericContainerScreen<T extends Container> extends ContainerScreen
 //        this.drawFuelProgressBar();
 //        this.drawCraftProgressBar();
 //        this.drawConfigTabs();
+    }
+
+    protected boolean isMouseWithinBounds(int mouseX, int mouseY, int x1, int y1, int x2, int y2) {
+        return isCoordinateBetween(mouseX, x1, x2) && isCoordinateBetween(mouseY, y1, y2);
+    }
+
+    private boolean isCoordinateBetween(int coordinate, int min, int max) {
+        int newMin = Math.min(min, max);
+        int newMax = Math.max(min, max);
+        return coordinate >= newMin && coordinate <= newMax;
     }
 }
