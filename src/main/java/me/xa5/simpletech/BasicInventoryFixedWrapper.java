@@ -16,6 +16,11 @@ public class BasicInventoryFixedWrapper extends PartialInventoryFixedWrapper {
     }
 
     @Override
+    public void markDirty() {
+        this.blockEntity.markDirty();
+    }
+
+    @Override
     public boolean canPlayerUseInv(PlayerEntity player) {
         return container.canUse(player);
     }
