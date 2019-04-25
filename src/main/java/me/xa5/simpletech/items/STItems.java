@@ -21,6 +21,15 @@ public class STItems {
     public static final Item TIN_NUGGET = new Item(createDefaultSettings());
     public static final Item ALUMINUM_NUGGET = new Item(createDefaultSettings());
 
+    public static final Item STEEL_DUST = new Item(createDefaultSettings());
+    public static final Item BRONZE_DUST = new Item(createDefaultSettings());
+    public static final Item COPPER_DUST = new Item(createDefaultSettings());
+    public static final Item TIN_DUST = new Item(createDefaultSettings());
+    public static final Item ALUMINUM_DUST = new Item(createDefaultSettings());
+
+    public static final Item GOLD_DUST = new Item(createDefaultSettings());
+    public static final Item IRON_DUST = new Item(createDefaultSettings());
+
     public static void registerAll() {
         register(Constants.Items.BATTERY, BATTERY);
 
@@ -35,6 +44,15 @@ public class STItems {
         register(Constants.Items.COPPER_NUGGET, COPPER_NUGGET);
         register(Constants.Items.TIN_NUGGET, TIN_NUGGET);
         register(Constants.Items.ALUMINUM_NUGGET, ALUMINUM_NUGGET);
+
+        register(Constants.Items.STEEL_DUST, STEEL_DUST);
+        register(Constants.Items.BRONZE_DUST, BRONZE_DUST);
+        register(Constants.Items.COPPER_DUST, COPPER_DUST);
+        register(Constants.Items.TIN_DUST, TIN_DUST);
+        register(Constants.Items.ALUMINUM_DUST, ALUMINUM_DUST);
+
+        register(Constants.Items.GOLD_DUST, GOLD_DUST);
+        register(Constants.Items.IRON_DUST, IRON_DUST);
     }
 
     public static void register(String id, Item item) {

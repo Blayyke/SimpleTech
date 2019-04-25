@@ -12,6 +12,10 @@ public class Constants {
         public static final String TIN_BLOCK = "tin_block";
         public static final String BRONZE_BLOCK = "bronze_block";
         public static final String ALUMINUM_BLOCK = "aluminum_block";
+
+        public static final String COPPER_ORE = "copper_ore";
+        public static final String TIN_ORE = "tin_ore";
+        public static final String ALUMINUM_ORE = "aluminum_ore";
     }
 
     public static class Items {
@@ -28,6 +32,15 @@ public class Constants {
         public static final String COPPER_NUGGET = "copper_nugget";
         public static final String TIN_NUGGET = "tin_nugget";
         public static final String ALUMINUM_NUGGET = "aluminum_nugget";
+
+        public static final String STEEL_DUST = "steel_dust";
+        public static final String BRONZE_DUST = "bronze_dust";
+        public static final String COPPER_DUST = "copper_dust";
+        public static final String TIN_DUST = "tin_dust";
+        public static final String ALUMINUM_DUST = "aluminum_dust";
+
+        public static final String GOLD_DUST = "gold_dust";
+        public static final String IRON_DUST = "iron_dust";
     }
 
     public class ItemGroup {

@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.tag.FabricItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.block.OreBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.BlockSoundGroup;
@@ -23,16 +24,24 @@ public class STBlocks {
     public static final Item MACHINE_BASE_ITEM = new BlockItem(MACHINE_BASE, createDefaultMachineItemSettings());
 
     public static final Block STEEL_BLOCK = new Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).build());
+    public static final Block BRONZE_BLOCK = new Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).build());
     public static final Block COPPER_BLOCK = new Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).build());
     public static final Block ALUMINUM_BLOCK = new Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).build());
     public static final Block TIN_BLOCK = new Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).build());
-    public static final Block BRONZE_BLOCK = new Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).build());
+
+    public static final Block COPPER_ORE = new OreBlock(FabricBlockSettings.copy(Blocks.IRON_ORE).build());
+    public static final Block ALUMINUM_ORE = new OreBlock(FabricBlockSettings.copy(Blocks.IRON_ORE).build());
+    public static final Block TIN_ORE = new OreBlock(FabricBlockSettings.copy(Blocks.IRON_ORE).build());
 
     private static final Item STEEL_BLOCK_ITEM = new BlockItem(STEEL_BLOCK, createDefaultItemSettings());
     private static final Item BRONZE_BLOCK_ITEM = new BlockItem(BRONZE_BLOCK, createDefaultItemSettings());
     private static final Item COPPER_BLOCK_ITEM = new BlockItem(COPPER_BLOCK, createDefaultItemSettings());
     private static final Item ALUMINUM_BLOCK_ITEM = new BlockItem(ALUMINUM_BLOCK, createDefaultItemSettings());
     private static final Item TIN_BLOCK_ITEM = new BlockItem(TIN_BLOCK, createDefaultItemSettings());
+
+    public static final Item COPPER_ORE_ITEM = new BlockItem(COPPER_ORE, createDefaultItemSettings());
+    public static final Item ALUMINUM_ORE_ITEM = new BlockItem(ALUMINUM_ORE, createDefaultItemSettings());
+    public static final Item TIN_ORE_ITEM = new BlockItem(TIN_ORE, createDefaultItemSettings());
 
     public static void registerAll() {
         register(Constants.Blocks.ELECTRIC_FURNACE, ELECTRIC_FURNACE);
@@ -44,11 +53,19 @@ public class STBlocks {
         register(Constants.Blocks.ALUMINUM_BLOCK, ALUMINUM_BLOCK);
         register(Constants.Blocks.TIN_BLOCK, TIN_BLOCK);
 
+        register(Constants.Blocks.COPPER_ORE, COPPER_ORE);
+        register(Constants.Blocks.ALUMINUM_ORE, ALUMINUM_ORE);
+        register(Constants.Blocks.TIN_ORE, TIN_ORE);
+
         STItems.register(Constants.Blocks.STEEL_BLOCK, STEEL_BLOCK_ITEM);
         STItems.register(Constants.Blocks.BRONZE_BLOCK, BRONZE_BLOCK_ITEM);
         STItems.register(Constants.Blocks.COPPER_BLOCK, COPPER_BLOCK_ITEM);
         STItems.register(Constants.Blocks.ALUMINUM_BLOCK, ALUMINUM_BLOCK_ITEM);
         STItems.register(Constants.Blocks.TIN_BLOCK, TIN_BLOCK_ITEM);
+
+        STItems.register(Constants.Blocks.COPPER_ORE, COPPER_ORE_ITEM);
+        STItems.register(Constants.Blocks.ALUMINUM_ORE, ALUMINUM_ORE_ITEM);
+        STItems.register(Constants.Blocks.TIN_ORE, TIN_ORE_ITEM);
 
         STItems.register(Constants.Blocks.ELECTRIC_FURNACE, ELECTRIC_FURNACE_ITEM);
         STItems.register(Constants.Blocks.MACHINE_BASE, MACHINE_BASE_ITEM);

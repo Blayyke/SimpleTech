@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "simple-tech:steel_dust"
+  },
+  "result": "simple-tech:steel_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}

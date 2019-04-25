@@ -19,11 +19,24 @@
   "item.simple-tech.tin_nugget": "Tin Nugget",
   "item.simple-tech.aluminum_nugget": "Aluminum Nugget",
 
+  "item.simple-tech.steel_dust": "Steel Dust",
+  "item.simple-tech.bronze_dust": "Bronze Dust",
+  "item.simple-tech.copper_dust": "Copper Dust",
+  "item.simple-tech.tin_dust": "Tin Dust",
+  "item.simple-tech.aluminum_dust": "Aluminum Dust",
+
+  "item.simple-tech.gold_dust": "Gold Dust",
+  "item.simple-tech.iron_dust": "Iron Dust",
+
   "block.simple-tech.steel_block": "Steel Block",
   "block.simple-tech.bronze_block": "Bronze Block",
   "block.simple-tech.copper_block": "Copper Block",
   "block.simple-tech.tin_block": "Tin Block",
   "block.simple-tech.aluminum_block": "Aluminum Block",
+
+  "block.simple-tech.copper_ore": "Copper Ore",
+  "block.simple-tech.tin_ore": "Tin Ore",
+  "block.simple-tech.aluminum_ore": "Aluminum Ore",
 
   "block.simple-tech.electric_furnace": "Electric Furnace",
   "block.simple-tech.machine_base": "Machine Base"
