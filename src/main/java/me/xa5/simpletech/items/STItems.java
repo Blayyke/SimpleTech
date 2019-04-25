@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class STItems {
-    public static final Item BATTERY = new BatteryItem(createDefaultSettings());
+    public static final Item BATTERY = new BatteryItem(createDefaultSettings().stackSize(1));
 
     public static final Item STEEL_INGOT = new Item(createDefaultSettings());
     public static final Item BRONZE_INGOT = new Item(createDefaultSettings());

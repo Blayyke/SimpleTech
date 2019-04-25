@@ -17,6 +17,10 @@ import java.util.List;
 public class BatteryItem extends Item implements EnergyHolderItem {
     private static final int MAX_CHARGE = 2000;
 
+    public BatteryItem(Settings settings) {
+        super(settings);
+    }
+
     @Override
     public void appendItemsForGroup(ItemGroup group, DefaultedList<ItemStack> list) {
         if (this.isInItemGroup(group)) {
@@ -44,9 +48,5 @@ public class BatteryItem extends Item implements EnergyHolderItem {
         }
 
         list.add(text);
-    }
-
-    public BatteryItem(Settings settings) {
-        super(settings);
     }
 }

@@ -14,19 +14,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 @Mixin(ItemStack.class)
-public abstract class MixinTest {
+public abstract class ItemStackMixin {
     @Shadow
     public abstract CompoundTag getOrCreateTag();
 
+    @Shadow
+    public abstract boolean hasTag();
+
     @Inject(method = "getTooltipText", at = @At("RETURN"))
     public void getTooltipText(CallbackInfoReturnable<List<TextComponent>> info) {
-        if (Screen.hasAltDown() && Screen.hasShiftDown()) {
-            info.getReturnValue().add(new StringTextComponent(getOrCreateTag().toString()));
-        }else {
-            StringTextComponent text = new StringTextComponent("Hold Shift+Alt to display item NBT.");
-            text.setStyle(text.getStyle().setItalic(true));
+        if (hasTag()) {
+            if (Screen.hasAltDown() && Screen.hasShiftDown()) {
+                info.getReturnValue().add(new StringTextComponent(getOrCreateTag().toString()));
+            } else {
+                StringTextComponent text = new StringTextComponent("Hold Shift+Alt to display item NBT.");
+                text.setStyle(text.getStyle().setItalic(true));
 
-            info.getReturnValue().add(text);
+                info.getReturnValue().add(text);
+            }
         }
     }
 }

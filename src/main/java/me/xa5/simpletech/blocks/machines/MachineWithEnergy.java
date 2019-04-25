@@ -26,11 +26,15 @@ public abstract class MachineWithEnergy extends Machine {
 
     private void chargeFromBattery() {
         ItemStack battery = getInventory().getInvStack(getChargeSlot());
-        if (battery.isEmpty()) {
-            return;
+        if (STEnergy.isEnergyItem(battery)) {
+            int machineEnergy = this.energy.getCurrentEnergy();
+            int batteryEnergy = STEnergy.getBatteryEnergy(battery);
+
+            if (machineEnergy == this.energy.getMaxEnergy()) {
+                // Cannot accept more energy; already full.
+                return;
+            }
         }
-
-
     }
 
     /**

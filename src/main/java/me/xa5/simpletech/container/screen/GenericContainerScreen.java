@@ -6,6 +6,8 @@ import net.minecraft.client.gui.ContainerScreen;
 import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.TextComponent;
+import net.minecraft.text.TextFormat;
+import net.minecraft.text.TranslatableTextComponent;
 import net.minecraft.util.Identifier;
 
 public class GenericContainerScreen<T extends Container> extends ContainerScreen<T> {
@@ -25,6 +27,13 @@ public class GenericContainerScreen<T extends Container> extends ContainerScreen
         this.blit(this.left, this.top, 0, 0, this.containerWidth, this.containerHeight);
 
         drawOverlay(var1, var2, var3);
+    }
+
+    @Override
+    public void render(int mouseX, int mouseY, float v) {
+        super.render(mouseX, mouseY, v);
+//        DrawableUtils.drawCenteredString(this.minecraft.textRenderer, new TranslatableTextComponent("block.galacticraft-rewoven.circuit_fabricator").getText(), (this.width / 2), this.top + 5, TextFormat.DARK_GRAY.getColor());
+        this.drawMouseoverTooltip(mouseX, mouseY);
     }
 
     protected void drawOverlay(float var1, int var2, int var3) {

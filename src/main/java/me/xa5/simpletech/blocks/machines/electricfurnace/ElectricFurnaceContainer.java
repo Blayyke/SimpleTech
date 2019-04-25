@@ -16,8 +16,8 @@ public class ElectricFurnaceContainer extends GenericContainer<ElectricFurnaceBl
 
         this.inventory = new BasicInventoryFixedWrapper(blockEntity, this);
         addSlot(new Slot(this.inventory, 0, 56, 17));
-        addSlot(new OutputSlot(player, this.inventory, 1, 56, 17));
-        addSlot(new BatterySlot(this.inventory, 2, 56, 17));
+        addSlot(new BatterySlot(this.inventory, 1, 56, 53));
+        addSlot(new OutputSlot(player, this.inventory, 2, 116, 35));
     }
 
     @Override

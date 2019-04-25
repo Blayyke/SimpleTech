@@ -3,7 +3,7 @@
   "package": "me.xa5.simpletech.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinTest"
+    "ItemStackMixin"
   ],
   "client": [
     "MixinTestClient"
