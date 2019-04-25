@@ -1,18 +1,24 @@
 package me.xa5.simpletech;
 
+import alexiil.mc.lib.attributes.item.FixedItemInv;
 import alexiil.mc.lib.attributes.item.impl.PartialInventoryFixedWrapper;
-import me.xa5.simpletech.blocks.machines.electricfurnace.ElectricFurnaceBlockEntity;
+import me.xa5.simpletech.blocks.machines.Machine;
 import net.minecraft.container.Container;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class BasicInventoryFixedWrapper extends PartialInventoryFixedWrapper {
-    private final ElectricFurnaceBlockEntity blockEntity;
+    private final Machine blockEntity;
     private Container container;
 
-    public BasicInventoryFixedWrapper(ElectricFurnaceBlockEntity blockEntity, Container container) {
+    public BasicInventoryFixedWrapper(Machine blockEntity, Container container) {
         super(blockEntity.getInventory());
         this.blockEntity = blockEntity;
         this.container = container;
+    }
+
+    public BasicInventoryFixedWrapper(Machine blockEntity, FixedItemInv inv) {
+        super(inv);
+        this.blockEntity = blockEntity;
     }
 
     @Override
@@ -22,6 +28,7 @@ public class BasicInventoryFixedWrapper extends PartialInventoryFixedWrapper {
 
     @Override
     public boolean canPlayerUseInv(PlayerEntity player) {
-        return container.canUse(player);
+        // If container is null, just return true.
+        return container == null || container.canUse(player);
     }
 }
