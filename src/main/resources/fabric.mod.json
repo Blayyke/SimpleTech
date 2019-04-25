@@ -14,10 +14,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.xa5.simpletech.SimpleTech"
+      "me.xa5.simpletech.SimpleTech::init"
     ],
     "client": [
-      "me.xa5.simpletech.SimpleTechClient"
+      "me.xa5.simpletech.SimpleTechClient::init"
     ]
   },
   "mixins": [
