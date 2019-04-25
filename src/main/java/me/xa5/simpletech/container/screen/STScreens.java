@@ -1,6 +1,5 @@
 package me.xa5.simpletech.container.screen;
 
-import me.xa5.simpletech.Constants;
 import me.xa5.simpletech.blocks.machines.electricfurnace.ElectricFurnaceScreen;
 import me.xa5.simpletech.container.STContainers;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
