@@ -1,30 +1,27 @@
 package me.xa5.simpletech.blocks.machines.electricfurnace;
 
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.container.Container;
+import me.xa5.simpletech.BasicInventoryFixedWrapper;
+import me.xa5.simpletech.blocks.STBlocks;
+import me.xa5.simpletech.container.GenericContainer;
+import me.xa5.simpletech.container.slot.BatterySlot;
+import me.xa5.simpletech.container.slot.OutputSlot;
+import net.minecraft.container.BlockContext;
+import net.minecraft.container.Slot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
-public class ElectricFurnaceContainer extends Container {
-    private final BlockPos blockPos;
-    private final PlayerEntity player;
-    private final ElectricFurnaceBlockEntity furnace;
-
+public class ElectricFurnaceContainer extends GenericContainer<ElectricFurnaceBlockEntity> {
     public ElectricFurnaceContainer(int syncId, BlockPos blockPos, PlayerEntity player) {
-        super(null, syncId);
-        this.blockPos = blockPos;
-        this.player = player;
+        super(syncId, blockPos, player, STBlocks.ELECTRIC_FURNACE, BlockContext.create(player.world, blockPos));
 
-        BlockEntity blockEntity = player.world.getBlockEntity(blockPos);
-        if (!(blockEntity instanceof ElectricFurnaceBlockEntity)) {
-            // TODO: Move this logic somewhere else to just not open this at all.
-            throw new IllegalStateException("Found " + blockEntity + " instead of an ElectricFurnaceBlockEntity!");
-        }
-        this.furnace = (ElectricFurnaceBlockEntity) blockEntity;
+        this.inventory = new BasicInventoryFixedWrapper(blockEntity, this);
+        addSlot(new Slot(this.inventory, 0, 56, 17));
+        addSlot(new OutputSlot(player, this.inventory, 1, 56, 17));
+        addSlot(new BatterySlot(this.inventory, 2, 56, 17));
     }
 
     @Override
-    public boolean canUse(PlayerEntity var1) {
-        return true;
+    protected int getPlayerInvYOffset() {
+        return 84;
     }
 }
