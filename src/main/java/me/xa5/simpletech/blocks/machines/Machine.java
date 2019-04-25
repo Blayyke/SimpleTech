@@ -38,4 +38,18 @@ public abstract class Machine extends BlockEntity implements Tickable, BlockEnti
     public final void fromClientTag(CompoundTag tag) {
         this.fromTag(tag);
     }
+
+    @Override
+    public CompoundTag toTag(CompoundTag tag) {
+        super.toTag(tag);
+        tag.put("Inventory", this.inventory.toTag());
+
+        return tag;
+    }
+
+    @Override
+    public void fromTag(CompoundTag tag) {
+        super.fromTag(tag);
+        this.inventory.fromTag(tag.getCompound("Inventory"));
+    }
 }

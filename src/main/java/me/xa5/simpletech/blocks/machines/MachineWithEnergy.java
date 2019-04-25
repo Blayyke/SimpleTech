@@ -4,6 +4,7 @@ import io.github.cottonmc.energy.impl.SimpleEnergyAttribute;
 import me.xa5.simpletech.energy.STEnergy;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 
 public abstract class MachineWithEnergy extends Machine {
     public static final int DEFAULT_MAX_ENERGY = 1000;
@@ -25,15 +26,26 @@ public abstract class MachineWithEnergy extends Machine {
     }
 
     private void chargeFromBattery() {
+        int amountToExtract = 5;
+
         ItemStack battery = getInventory().getInvStack(getChargeSlot());
         if (STEnergy.isEnergyItem(battery)) {
             int machineEnergy = this.energy.getCurrentEnergy();
-            int batteryEnergy = STEnergy.getBatteryEnergy(battery);
-
-            if (machineEnergy == this.energy.getMaxEnergy()) {
+            if (machineEnergy >= this.energy.getMaxEnergy()) {
                 // Cannot accept more energy; already full.
                 return;
             }
+
+            int batteryEnergy = STEnergy.getBatteryEnergy(battery);
+            // Don't extract more energy than what is stored in the battery.
+            amountToExtract = Math.min(amountToExtract, batteryEnergy);
+
+            // 15000 - 14950 = 50 room to charge
+            int machineChargeRoom = energy.getMaxEnergy() - machineEnergy;
+            amountToExtract = Math.min(amountToExtract, machineChargeRoom);
+
+            STEnergy.decrementEnergy(battery, amountToExtract);
+            this.energy.setCurrentEnergy(machineEnergy + amountToExtract);
         }
     }
 
@@ -44,6 +56,21 @@ public abstract class MachineWithEnergy extends Machine {
      */
     public int getChargeSlot() {
         return 0;
+    }
+
+    @Override
+    public void fromTag(CompoundTag tag) {
+        super.fromTag(tag);
+
+        energy.fromTag(tag.getCompound("Energy"));
+    }
+
+    @Override
+    public CompoundTag toTag(CompoundTag tag) {
+        super.toTag(tag);
+
+        tag.put("Energy", energy.toTag());
+        return tag;
     }
 
     protected abstract void onTick();
