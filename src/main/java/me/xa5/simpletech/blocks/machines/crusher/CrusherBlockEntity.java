@@ -7,10 +7,10 @@ import me.xa5.simpletech.MachineStatus;
 import me.xa5.simpletech.blocks.machines.MachineWithEnergy;
 import me.xa5.simpletech.energy.STEnergy;
 import me.xa5.simpletech.entity.STBlockEntities;
+import me.xa5.simpletech.recipe.CrushingRecipe;
+import me.xa5.simpletech.recipe.STRecipes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.cooking.SmeltingRecipe;
 
 import java.util.Optional;
 
@@ -19,7 +19,7 @@ public class CrusherBlockEntity extends MachineWithEnergy {
     public static final int CHARGE_SLOT = 2;
     private MachineStatus status = MachineStatus.OUT_OF_POWER;
     public int progress = 0;
-    public int maxProgress = 100;
+    public int maxProgress;
 
     public CrusherBlockEntity() {
         super(STBlockEntities.CRUSHER);
@@ -31,17 +31,16 @@ public class CrusherBlockEntity extends MachineWithEnergy {
     }
 
     private ItemStack getResultFromRecipeStack(Inventory inv) {
-        // Once this method has been called, we have verified that either a shapeless or shaped recipe is present with isValidRecipe. Ignore the warning on getShapedRecipe(inv).get().
-
-        Optional<SmeltingRecipe> shapelessRecipe = getSmeltingRecipe(inv);
-        if (shapelessRecipe.isPresent()) {
-            return shapelessRecipe.get().craft(inv);
+        Optional<CrushingRecipe> crushingRecipe = getCrushingRecipe(inv);
+        if (!crushingRecipe.isPresent()) {
+            throw new IllegalStateException("Crushing recipe was not found!");
         }
-        return getSmeltingRecipe(inv).orElseThrow(() -> new IllegalStateException("No crushing recipe present! This should never happen, as isValidRecipe should have been called first.")).craft(inv);
+
+        return crushingRecipe.get().craft(inv);
     }
 
-    private Optional<SmeltingRecipe> getSmeltingRecipe(Inventory input) {
-        return this.world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, input, this.world);
+    private Optional<CrushingRecipe> getCrushingRecipe(Inventory input) {
+        return this.world.getRecipeManager().getFirstMatch(STRecipes.CRUSHING_TYPE, input, this.world);
     }
 
     private boolean canPutStackInResultSlot(ItemStack itemStack) {
@@ -54,13 +53,16 @@ public class CrusherBlockEntity extends MachineWithEnergy {
         }
     }
 
-    private boolean isValidRecipe(Inventory input) {
-        return getSmeltingRecipe(input).isPresent();
+    private boolean isValidRecipe(Optional<CrushingRecipe> recipe) {
+        return recipe.isPresent();
     }
 
     @Override
     protected void onTick() {
         BasicInventoryFixedWrapper inv = new BasicInventoryFixedWrapper(this, this.getInventory().getSubInv(0, 1));
+        Optional<CrushingRecipe> recipe = getCrushingRecipe(inv);
+        recipe.ifPresent(crushingRecipe -> this.maxProgress = crushingRecipe.getCookTime());
+
         // Drain energy
         if (this.getEnergy().getCurrentEnergy() - 2 < 0) {
             status = MachineStatus.OUT_OF_POWER;
@@ -68,12 +70,12 @@ public class CrusherBlockEntity extends MachineWithEnergy {
             status = MachineStatus.PROCESSING;
         }
 
-        if (status == MachineStatus.PROCESSING && !isValidRecipe(inv)) {
+        if (status == MachineStatus.PROCESSING && !isValidRecipe(recipe)) {
             // Recipe is invalid. Machine is idle.
             status = MachineStatus.IDLE;
         }
         if (status == MachineStatus.PROCESSING) {
-            if (isValidRecipe(inv) && canPutStackInResultSlot(getResultFromRecipeStack(inv))) {
+            if (isValidRecipe(recipe) && canPutStackInResultSlot(getResultFromRecipeStack(inv))) {
                 // Subtract 2 from energy buffer.
                 this.getEnergy().extractEnergy(STEnergy.ENERGY_TYPE, 2, ActionType.PERFORM);
 
@@ -82,6 +84,7 @@ public class CrusherBlockEntity extends MachineWithEnergy {
 
                 if (this.progress >= maxProgress) {
                     this.progress = 0;
+                    this.maxProgress = 0;
 
                     craftItem(output);
                 }

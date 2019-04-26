@@ -35,9 +35,6 @@ public class GenericContainerScreen<T extends Container> extends ContainerScreen
     }
 
     protected void drawOverlay(float var1, int var2, int var3) {
-//        this.drawFuelProgressBar();
-//        this.drawCraftProgressBar();
-//        this.drawConfigTabs();
     }
 
     protected boolean isMouseWithinBounds(int mouseX, int mouseY, int x1, int y1, int x2, int y2) {

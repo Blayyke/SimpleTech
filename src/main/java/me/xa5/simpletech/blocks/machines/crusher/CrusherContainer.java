@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class CrusherContainer extends GenericContainer<CrusherBlockEntity> {
     public CrusherContainer(int syncId, BlockPos blockPos, PlayerEntity player) {
-        super(syncId, blockPos, player, STBlocks.ELECTRIC_FURNACE, BlockContext.create(player.world, blockPos));
+        super(syncId, blockPos, player, STBlocks.CRUSHER, BlockContext.create(player.world, blockPos));
 
         this.inventory = new BasicInventoryFixedWrapper(blockEntity, this);
         int slotX = 26;

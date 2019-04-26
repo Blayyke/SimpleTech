@@ -21,6 +21,7 @@ public class SimpleTech {
     public static final ItemGroup BLOCKS_GROUP = FabricItemGroupBuilder.create(new Identifier(Constants.MOD_ID, Constants.ItemGroup.BLOCKS_GROUP))
             .icon(() -> new ItemStack(STBlocks.COPPER_BLOCK)).build();
 
+    @SuppressWarnings("unused")
     public static void init() {
         STEnergy.init();
         STBlocks.init();

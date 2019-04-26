@@ -1,4 +1,4 @@
-package me.xa5.simpletech.blocks.machines;
+package me.xa5.simpletech.blocks.machines.wire;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -7,8 +7,10 @@ import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.VerticalEntityPosition;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateFactory;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +19,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,7 @@ public class WireBlock extends Block implements WireConnectable {
     private static final VoxelShape UP    = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 8 + 3, 16   , 8 + 3);
     private static final VoxelShape DOWN  = createCuboidShape(8 - 3, 0    , 8 - 3, 8 + 3, 8 + 3, 8 + 3);
     private static final VoxelShape NONE  = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 8 + 3, 8 + 3, 8 + 3);    // 6x6x6 box in the center.
+    private WireNetwork network;
     //@formatter:on
 
     public WireBlock(Settings block$Settings_1) {
@@ -159,5 +163,15 @@ public class WireBlock extends Block implements WireConnectable {
     @Override
     public boolean canWireConnect(IWorld world, Direction opposite, BlockPos thisWire, BlockPos otherConnectable) {
         return true;
+    }
+
+    @Override
+    public WireNetwork getNetwork() {
+        return this.network;
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState blockState_1, LivingEntity livingEntity_1, ItemStack itemStack_1) {
+        this.network = WireNetwork.findOrCreateNetwork(world, pos);
     }
 }

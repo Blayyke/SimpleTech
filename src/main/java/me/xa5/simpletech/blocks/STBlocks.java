@@ -2,8 +2,9 @@ package me.xa5.simpletech.blocks;
 
 import me.xa5.simpletech.Constants;
 import me.xa5.simpletech.SimpleTech;
-import me.xa5.simpletech.blocks.machines.WireBlock;
+import me.xa5.simpletech.blocks.machines.crusher.CrusherBlock;
 import me.xa5.simpletech.blocks.machines.electricfurnace.ElectricFurnaceBlock;
+import me.xa5.simpletech.blocks.machines.wire.WireBlock;
 import me.xa5.simpletech.items.STItems;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tag.FabricItemTags;
@@ -18,11 +19,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class STBlocks {
-    public static final ElectricFurnaceBlock ELECTRIC_FURNACE = new ElectricFurnaceBlock(createDefaultMachineSettings());
-    public static final ElectricFurnaceBlock CRUSHER = new ElectricFurnaceBlock(createDefaultMachineSettings());
-    public static final WireBlock WIRE = new WireBlock(createDefaultMachineSettings());
+    public static final ElectricFurnaceBlock ELECTRIC_FURNACE = new ElectricFurnaceBlock(createDefaultMachineSettings().build());
+    public static final CrusherBlock CRUSHER = new CrusherBlock(createDefaultMachineSettings().build());
+    public static final WireBlock WIRE = new WireBlock(FabricBlockSettings.copy(Blocks.WHITE_WOOL).build());
 
-    public static final Block MACHINE_BASE = new Block(createDefaultMachineSettings());
+    public static final Block MACHINE_BASE = new Block(createDefaultMachineSettings().build());
 
     public static final BlockItem ELECTRIC_FURNACE_ITEM = new BlockItem(ELECTRIC_FURNACE, createDefaultMachineItemSettings());
     public static final BlockItem CRUSHER_ITEM = new BlockItem(CRUSHER, createDefaultMachineItemSettings());
@@ -88,12 +89,11 @@ public class STBlocks {
         Registry.register(Registry.BLOCK, new Identifier(Constants.MOD_ID, id), block);
     }
 
-    private static Block.Settings createDefaultMachineSettings() {
+    private static FabricBlockSettings createDefaultMachineSettings() {
         return FabricBlockSettings.of(Material.METAL)
                 .breakByTool(FabricItemTags.PICKAXES)
                 .strength(1.5F, 6.0F)
-                .sounds(BlockSoundGroup.METAL)
-                .build();
+                .sounds(BlockSoundGroup.METAL);
     }
 
     private static Item.Settings createDefaultMachineItemSettings() {

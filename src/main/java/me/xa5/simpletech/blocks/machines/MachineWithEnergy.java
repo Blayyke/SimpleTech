@@ -1,10 +1,16 @@
 package me.xa5.simpletech.blocks.machines;
 
 import io.github.cottonmc.energy.impl.SimpleEnergyAttribute;
+import io.github.prospector.silk.util.ActionType;
+import me.xa5.simpletech.blocks.machines.wire.WireConnectable;
+import me.xa5.simpletech.blocks.machines.wire.WireNetwork;
 import me.xa5.simpletech.energy.STEnergy;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 
 public abstract class MachineWithEnergy extends Machine {
     public static final int DEFAULT_MAX_ENERGY = 1000;
@@ -22,6 +28,7 @@ public abstract class MachineWithEnergy extends Machine {
     @Override
     public final void tick() {
         this.chargeFromBattery();
+        this.chargeFromNetwork();
         this.onTick();
     }
 
@@ -47,6 +54,24 @@ public abstract class MachineWithEnergy extends Machine {
             STEnergy.decrementEnergy(battery, amountToExtract);
             this.energy.setCurrentEnergy(machineEnergy + amountToExtract);
         }
+    }
+
+    protected void chargeFromNetwork() {
+        for (Direction value : Direction.values()) {
+            BlockPos offset = pos.offset(value);
+            BlockState blockState = world.getBlockState(offset);
+            if (blockState.getBlock() instanceof WireConnectable) {
+                WireNetwork network = ((WireConnectable) blockState.getBlock()).getNetwork();
+                if (canChargeFromSide(value)) {
+                    this.energy.insertEnergy(STEnergy.ENERGY_TYPE, 10, ActionType.PERFORM);
+                    System.out.println("Can charge from network!");
+                }
+            }
+        }
+    }
+
+    protected boolean canChargeFromSide(Direction value) {
+        return true;
     }
 
     /**

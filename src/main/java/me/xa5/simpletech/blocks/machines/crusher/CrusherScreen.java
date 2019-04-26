@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class CrusherScreen extends GenericContainerScreen {
     public CrusherScreen(int syncId, BlockPos pos, PlayerEntity player) {
-        super(new CrusherContainer(syncId, pos, player), player.inventory, new TranslatableTextComponent(""), Constants.Blocks.CRUSHER);
+        super(new CrusherContainer(syncId, pos, player), player.inventory, new TranslatableTextComponent(""), Constants.Blocks.ELECTRIC_FURNACE);
         this.height = 140;
     }
 
