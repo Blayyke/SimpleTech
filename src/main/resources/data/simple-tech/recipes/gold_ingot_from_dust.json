@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "simple-tech:gold_dust"
   },
-  "result": "simple-tech:gold_ingot",
+  "result": "minecraft:gold_ingot",
   "experience": 0.7,
   "cookingtime": 200
 }

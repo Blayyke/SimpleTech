@@ -5,6 +5,7 @@ import me.xa5.simpletech.container.STContainers;
 import me.xa5.simpletech.energy.STEnergy;
 import me.xa5.simpletech.entity.STBlockEntities;
 import me.xa5.simpletech.items.STItems;
+import me.xa5.simpletech.recipe.STRecipes;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -21,10 +22,11 @@ public class SimpleTech {
             .icon(() -> new ItemStack(STBlocks.COPPER_BLOCK)).build();
 
     public static void init() {
-        STBlocks.registerAll();
-        STItems.registerAll();
-        STBlockEntities.registerAll();
-        STContainers.registerAll();
-        STEnergy.registerAll();
+        STEnergy.init();
+        STBlocks.init();
+        STBlockEntities.init();
+        STItems.init();
+        STContainers.init();
+        STRecipes.init();
     }
 }

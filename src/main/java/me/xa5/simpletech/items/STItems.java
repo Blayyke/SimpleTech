@@ -30,7 +30,7 @@ public class STItems {
     public static final Item GOLD_DUST = new Item(createDefaultSettings());
     public static final Item IRON_DUST = new Item(createDefaultSettings());
 
-    public static void registerAll() {
+    public static void init() {
         register(Constants.Items.BATTERY, BATTERY);
 
         register(Constants.Items.STEEL_INGOT, STEEL_INGOT);

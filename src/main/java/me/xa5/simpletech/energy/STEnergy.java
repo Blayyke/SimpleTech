@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 public class STEnergy {
     public static final STEnergyType ENERGY_TYPE = new STEnergyType();
 
-    public static void registerAll() {
+    public static void init() {
         Registry.register(CottonEnergy.ENERGY_REGISTRY, new Identifier(Constants.MOD_ID, Constants.Energy.ENERGY), ENERGY_TYPE);
     }
 

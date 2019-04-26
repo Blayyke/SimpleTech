@@ -2,6 +2,7 @@ package me.xa5.simpletech.blocks;
 
 import me.xa5.simpletech.Constants;
 import me.xa5.simpletech.SimpleTech;
+import me.xa5.simpletech.blocks.machines.WireBlock;
 import me.xa5.simpletech.blocks.machines.electricfurnace.ElectricFurnaceBlock;
 import me.xa5.simpletech.items.STItems;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
@@ -18,9 +19,15 @@ import net.minecraft.util.registry.Registry;
 
 public class STBlocks {
     public static final ElectricFurnaceBlock ELECTRIC_FURNACE = new ElectricFurnaceBlock(createDefaultMachineSettings());
+    public static final ElectricFurnaceBlock CRUSHER = new ElectricFurnaceBlock(createDefaultMachineSettings());
+    public static final WireBlock WIRE = new WireBlock(createDefaultMachineSettings());
+
     public static final Block MACHINE_BASE = new Block(createDefaultMachineSettings());
 
     public static final BlockItem ELECTRIC_FURNACE_ITEM = new BlockItem(ELECTRIC_FURNACE, createDefaultMachineItemSettings());
+    public static final BlockItem CRUSHER_ITEM = new BlockItem(CRUSHER, createDefaultMachineItemSettings());
+    public static final BlockItem WIRE_ITEM = new BlockItem(WIRE, createDefaultMachineItemSettings());
+
     public static final Item MACHINE_BASE_ITEM = new BlockItem(MACHINE_BASE, createDefaultMachineItemSettings());
 
     public static final Block STEEL_BLOCK = new Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).build());
@@ -43,8 +50,11 @@ public class STBlocks {
     public static final Item ALUMINUM_ORE_ITEM = new BlockItem(ALUMINUM_ORE, createDefaultItemSettings());
     public static final Item TIN_ORE_ITEM = new BlockItem(TIN_ORE, createDefaultItemSettings());
 
-    public static void registerAll() {
+    public static void init() {
         register(Constants.Blocks.ELECTRIC_FURNACE, ELECTRIC_FURNACE);
+        register(Constants.Blocks.CRUSHER, CRUSHER);
+        register(Constants.Blocks.WIRE, WIRE);
+
         register(Constants.Blocks.MACHINE_BASE, MACHINE_BASE);
 
         register(Constants.Blocks.STEEL_BLOCK, STEEL_BLOCK);
@@ -68,6 +78,9 @@ public class STBlocks {
         STItems.register(Constants.Blocks.TIN_ORE, TIN_ORE_ITEM);
 
         STItems.register(Constants.Blocks.ELECTRIC_FURNACE, ELECTRIC_FURNACE_ITEM);
+        STItems.register(Constants.Blocks.CRUSHER, CRUSHER_ITEM);
+        STItems.register(Constants.Blocks.WIRE, WIRE_ITEM);
+
         STItems.register(Constants.Blocks.MACHINE_BASE, MACHINE_BASE_ITEM);
     }
 

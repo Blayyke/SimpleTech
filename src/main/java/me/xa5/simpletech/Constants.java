@@ -4,7 +4,11 @@ public class Constants {
     public static final String MOD_ID = "simple-tech";
 
     public static class Blocks {
+
         public static final String ELECTRIC_FURNACE = "electric_furnace";
+        public static final String CRUSHER = "crusher";
+        public static final String WIRE = "wire";
+
         public static final String MACHINE_BASE = "machine_base";
 
         public static final String STEEL_BLOCK = "steel_block";

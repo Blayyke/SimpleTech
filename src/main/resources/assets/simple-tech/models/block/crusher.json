@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "simple-tech:block/machine",
+    "front": "simple-tech:block/crusher",
+    "side": "simple-tech:block/machine_side"
+  }
+}

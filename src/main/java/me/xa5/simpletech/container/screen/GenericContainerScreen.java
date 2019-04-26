@@ -30,7 +30,7 @@ public class GenericContainerScreen<T extends Container> extends ContainerScreen
     @Override
     public void render(int mouseX, int mouseY, float v) {
         super.render(mouseX, mouseY, v);
-//        DrawableUtils.drawCenteredString(this.minecraft.textRenderer, new TranslatableTextComponent("block.galacticraft-rewoven.circuit_fabricator").getText(), (this.width / 2), this.top + 5, TextFormat.DARK_GRAY.getColor());
+//        DrawableUtils.drawCenteredString(this.minecraft.textRenderer, new TranslatableTextComponent("block.simple-tech.circuit_fabricator").getText(), (this.width / 2), this.top + 5, TextFormat.DARK_GRAY.getColor());
         this.drawMouseoverTooltip(mouseX, mouseY);
     }
 
