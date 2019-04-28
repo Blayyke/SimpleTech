@@ -2,10 +2,10 @@ package me.xa5.simpletech.blocks.machines;
 
 import io.github.cottonmc.energy.impl.SimpleEnergyAttribute;
 import io.github.prospector.silk.util.ActionType;
-import me.xa5.simpletech.blocks.machines.wire.WireConnectable;
 import me.xa5.simpletech.blocks.machines.wire.WireNetwork;
+import me.xa5.simpletech.blocks.machines.wire.WireNetworkPart;
 import me.xa5.simpletech.energy.STEnergy;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -59,9 +59,9 @@ public abstract class MachineWithEnergy extends Machine {
     protected void chargeFromNetwork() {
         for (Direction value : Direction.values()) {
             BlockPos offset = pos.offset(value);
-            BlockState blockState = world.getBlockState(offset);
-            if (blockState.getBlock() instanceof WireConnectable) {
-                WireNetwork network = ((WireConnectable) blockState.getBlock()).getNetwork();
+            BlockEntity blockState = world.getBlockEntity(offset);
+            if (blockState instanceof WireNetworkPart) {
+                WireNetwork network = ((WireNetworkPart) blockState).getNetwork();
                 if (canChargeFromSide(value)) {
                     this.energy.insertEnergy(STEnergy.ENERGY_TYPE, 10, ActionType.PERFORM);
                     System.out.println("Can charge from network!");

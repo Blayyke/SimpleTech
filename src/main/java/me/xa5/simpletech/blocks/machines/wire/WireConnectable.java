@@ -6,6 +6,4 @@ import net.minecraft.world.IWorld;
 
 public interface WireConnectable {
     boolean canWireConnect(IWorld world, Direction opposite, BlockPos thisWire, BlockPos otherConnectable) ;
-
-    WireNetwork getNetwork();
 }

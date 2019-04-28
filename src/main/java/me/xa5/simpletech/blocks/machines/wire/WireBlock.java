@@ -2,10 +2,8 @@ package me.xa5.simpletech.blocks.machines.wire;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderLayer;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.VerticalEntityPosition;
@@ -23,7 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-public class WireBlock extends Block implements WireConnectable {
+public class WireBlock extends Block implements WireConnectable, BlockEntityProvider {
     private static BooleanProperty ATTACHED_UP = BooleanProperty.create("attached_up");
     private static BooleanProperty ATTACHED_DOWN = BooleanProperty.create("attached_down");
     private static BooleanProperty ATTACHED_NORTH = BooleanProperty.create("attached_north");
@@ -34,13 +32,12 @@ public class WireBlock extends Block implements WireConnectable {
     //@formatter:off
     // If we start at 8,8,8 and subtract/add to/from 8, we do operations starting from the centre.
     private static final VoxelShape NORTH = createCuboidShape(8 - 3, 8 - 3, 0, 8 + 3, 8 + 3, 8 + 3);
-    private static final VoxelShape EAST  = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 16   , 8 + 3, 8 + 3);
+    private static final VoxelShape EAST = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 16, 8 + 3, 8 + 3);
     private static final VoxelShape SOUTH = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 8 + 3, 8 + 3, 16);
-    private static final VoxelShape WEST  = createCuboidShape(0, 8 - 3, 8 - 3, 8 + 3, 8 + 3, 8 + 3);
-    private static final VoxelShape UP    = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 8 + 3, 16   , 8 + 3);
-    private static final VoxelShape DOWN  = createCuboidShape(8 - 3, 0    , 8 - 3, 8 + 3, 8 + 3, 8 + 3);
-    private static final VoxelShape NONE  = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 8 + 3, 8 + 3, 8 + 3);    // 6x6x6 box in the center.
-    private WireNetwork network;
+    private static final VoxelShape WEST = createCuboidShape(0, 8 - 3, 8 - 3, 8 + 3, 8 + 3, 8 + 3);
+    private static final VoxelShape UP = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 8 + 3, 16, 8 + 3);
+    private static final VoxelShape DOWN = createCuboidShape(8 - 3, 0, 8 - 3, 8 + 3, 8 + 3, 8 + 3);
+    private static final VoxelShape NONE = createCuboidShape(8 - 3, 8 - 3, 8 - 3, 8 + 3, 8 + 3, 8 + 3);    // 6x6x6 box in the center.
     //@formatter:on
 
     public WireBlock(Settings block$Settings_1) {
@@ -166,12 +163,22 @@ public class WireBlock extends Block implements WireConnectable {
     }
 
     @Override
-    public WireNetwork getNetwork() {
-        return this.network;
+    public void onBlockRemoved(BlockState blockState_1, World world, BlockPos pos, BlockState blockState_2, boolean boolean_1) {
+        WireNetwork network = WireNetwork.getNetwork(world, pos);
+        WireNetwork.NETWORKS.remove(network);
     }
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState blockState_1, LivingEntity livingEntity_1, ItemStack itemStack_1) {
-        this.network = WireNetwork.findOrCreateNetwork(world, pos);
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+
+        if (blockEntity instanceof WireNetworkPart) {
+            ((WireNetworkPart) blockEntity).setNetwork(WireNetwork.findOrCreateNetwork(world, pos));
+        }
+    }
+
+    @Override
+    public BlockEntity createBlockEntity(BlockView blockView) {
+        return new WireBlockEntity();
     }
 }
