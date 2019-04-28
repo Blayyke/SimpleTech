@@ -39,6 +39,11 @@ public abstract class BaseMachineBlock extends Block implements BlockEntityProvi
 
     @Override
     public final boolean activate(BlockState blockState_1, World world, BlockPos pos, PlayerEntity player, Hand hand_1, BlockHitResult blockHitResult_1) {
+        if (this.containerId == null) {
+            // No container for this machine, don't allow opening.
+            return false;
+        }
+
         if (world.isClient) {
             return true;
         }
