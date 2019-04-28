@@ -1,0 +1,9 @@
+{
+  "type": "simple-tech:crushing",
+  "ingredient": {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": "simple-tech:gold_dust",
+  "count": 1,
+  "cookTime": 200
+}

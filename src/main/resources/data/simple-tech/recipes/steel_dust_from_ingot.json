@@ -1,0 +1,9 @@
+{
+  "type": "simple-tech:crushing",
+  "ingredient": {
+    "item": "simple-tech:steel_ingot"
+  },
+  "result": "simple-tech:steel_dust",
+  "count": 1,
+  "cookTime": 200
+}

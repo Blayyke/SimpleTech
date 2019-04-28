@@ -1,0 +1,9 @@
+{
+  "type": "simple-tech:crushing",
+  "ingredient": {
+    "item": "simple-tech:tin_ore"
+  },
+  "result": "simple-tech:tin_dust",
+  "count": 2,
+  "cookTime": 200
+}

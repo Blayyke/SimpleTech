@@ -1,0 +1,9 @@
+{
+  "type": "simple-tech:crushing",
+  "ingredient": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": "simple-tech:iron_dust",
+  "count": 1,
+  "cookTime": 200
+}

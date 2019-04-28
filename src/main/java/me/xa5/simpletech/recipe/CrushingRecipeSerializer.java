@@ -43,9 +43,9 @@ public class CrushingRecipeSerializer<T extends CrushingRecipe> implements Recip
             input = Ingredient.fromJson(JsonHelper.getObject(json, "ingredient"));
         }
 
-        int cookTime = JsonHelper.getInt(json, "cookTime");
         String result = JsonHelper.getString(json, "result");
         int count = JsonHelper.getInt(json, "count");
+        int cookTime = JsonHelper.getInt(json, "cookTime");
         ItemStack output = new ItemStack(Registry.ITEM.get(new Identifier(result)), count);
         return this.recipeFactory.create(id, input, output, cookTime);
     }
